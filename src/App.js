@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import CardComponent from ""
+import CardComponent from "./component/CardComponent";
+import CardDetailComponent from "./component/CardDetailComponent"
+import DetailsFormComponent from "./component/DetailsFormComponent"
+import DebitCreditForm from "./component/DeditCardForm";
+import HomePageComponent from "./component/HomePageComponent";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+   
+   
+    <BrowserRouter >
+      <Routes>
+        <Route path="/" element={<CardComponent/>} />
+        <Route path='card-details/:id' element={<CardDetailComponent/>} />
+        <Route path="card-form" element={<DetailsFormComponent/>}/>
+        <Route path="card-debit" element={<DebitCreditForm/>}/>
+        {/* <HomePageComponent/> */}
+        
+
+      </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 
