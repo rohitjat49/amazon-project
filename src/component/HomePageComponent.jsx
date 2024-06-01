@@ -1,16 +1,18 @@
-import React from "react";
-import AmazonMain from "../img/amazon-main-hedding.jpeg";
-import SbiCardImage from "../img/IMG_02.jpg";
-import AllCardImage from "../img/IMG_3.png";
+import React, { useState } from 'react';
 import TodayDealComponent from "./TodayDealComponent";
-import Logo from "../img/logo main.png";
 import CardComponent from "./CardComponent";
+import {  useNavigate } from 'react-router-dom';
+import FooterComponent from "./FooterComponent";
+import Navbarcomponent from './Navbarcomponent';
+ 
 
 const HomePageComponent = () => {
+  const navigate = useNavigate();
+  const [isDisabled, setIsDisabled] = useState(true);
   return (
     <>
       {/* nav bar start */}
-      <div className="navBar bg-dark navBarInput py-3 px-2 ">
+      {/* <div className="navBar bg-dark navBarInput py-3 px-2 ">
         <div class="d-flex bd-highlight  ">
           <div class="p-2 bd-highlight">
             <a className="">
@@ -24,10 +26,16 @@ const HomePageComponent = () => {
           </div>
           <div class="p-2 bd-highlight">
             <a className="" style={{ width: "85px" }}>
-              <img src={Logo} className="" style={{ width: "85px" }} />
+              <img
+                src="img/logo main.png"
+                className=""
+                style={{ width: "85px" }}
+              />
             </a>
           </div>
-          <div class="ms-auto p-2 bd-highlight">
+         
+          <div class="ms-auto p-2 bd-highlight d-flex">
+            
             <a className="">
               <span>
                 <img
@@ -36,7 +44,7 @@ const HomePageComponent = () => {
                 />
               </span>
             </a>
-            <a href="#/mobile.html#" class=" ps-3">
+            <a href="/" class=" ps-3">
               <svg
                 width="16"
                 height="16"
@@ -52,6 +60,15 @@ const HomePageComponent = () => {
                 </g>
               </svg>
             </a>
+
+            <div className="ms-2">
+      <span
+        className={`text-white ${isDisabled ? 'unClickable' : ''}`}
+        onClick={() => !isDisabled && navigate('/admin-login')}
+      >
+        Login
+      </span>
+    </div>
           </div>
         </div>
 
@@ -62,19 +79,18 @@ const HomePageComponent = () => {
             placeholder="Search"
           ></input>
         </div>
-      </div>
+      </div> */}
+      <Navbarcomponent/>
       {/* navbar end */}
       {/* image section start */}
-     
+
       <div className="">
+       
         <div>
-          <img src={AmazonMain} width="100%" alt="container-fluid" />
+          <img src="/img/th (1).jpg" width="100%" alt="container-fluid" />
         </div>
         <div>
-          <img src={SbiCardImage} width="100%" alt="container-fluid" />
-        </div>
-        <div>
-          <img src={AllCardImage} width="100%" alt="container-fluid" />
+          <img src="/img/payeazy_offers_HDFC-Bank--Times-PayEazy-Bill-amounrt-banner.png" width="100%" alt="container-fluid" />
         </div>
       </div>
 
@@ -87,13 +103,20 @@ const HomePageComponent = () => {
       {/* today deal end */}
 
       {/* card details start */}
-      <CardComponent/>
+      <CardComponent />
 
       {/* card details end */}
-
+      {/* <button
+        className="btn btn-primary mt-5"
+        
+      >
+        Admin Pannel 
+      </button> */}
       
 
-
+            <div>
+              <FooterComponent/>
+            </div>
     </>
   );
 };

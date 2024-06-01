@@ -1,63 +1,86 @@
 
-
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import Wacth from '../img/watch.jpg';
-import Prime from '../img/prime11.png';
-import Love from '../img/love.png';
-import Share from '../img/share.png';
-import Returns from '../img/returns.png';
-import Delivered from '../img/delivered.png';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Navbarcomponent from './Navbarcomponent';
 
 const CardDetailComponent = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(900);  
-  const [data, setData] = useState(null); 
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [finalPrice, setFinalPrice] = useState(null); 
   const [savings, setSavings] = useState(null); 
+  const [minutes, setMinutes] = useState(15); // Set initial time in minutes
+  const [seconds, setSeconds] = useState(0);  // Set initial time in seconds
+  const [isExpired, setIsExpired] = useState(false);
+  const { state } = useLocation();
+  const id = state ? state._id : null;
 
   useEffect(() => {
-    console.log(`Fetching data for product id: ${id}`);
-    axios
-      .get(`https://amazon-e5nh.onrender.com/getoneproduct/${id}`)
-      .then((res) => {
-        console.log('API Response:', res.data);
-        setData(res.data); 
-        setError(null); 
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getoneproduct/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        console.log('API Response:', response.data); // Log API response
+
+        if (response.data && response.data.upload && response.data.upload.length > 0) {
+          setData(response.data);
+          setError(null);
+        } else {
+          setError('No image data found in the API response.');
+        }
+      } catch (error) {
         console.error('Error fetching data:', error);
         setError('Failed to fetch product data. Please try again later.');
-      });
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   useEffect(() => {
-    
     if (data && data.price && data.discount && data.discount !== 0) {
-      const divisionResult = data.price - data.discount; 
-      const savingsResult = data.price / data.discount; 
-
-      setFinalPrice(divisionResult); 
-      setSavings(savingsResult); 
+      const discountAmount = (data.price * data.discount) / 100; 
+      const finalPrice = data.price - discountAmount; 
+      const savings = discountAmount; 
+      
+      setFinalPrice(Math.round(finalPrice));  
+      setSavings(Math.round(savings));        
     }
   }, [data]);
-console.log("first", finalPrice)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
+    if (minutes === 0 && seconds === 0) {
+      setIsExpired(true); // Set expired state when timer ends
+      return;
+    }
+
+    const timer = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      } else if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(timer);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
     }, 1000);
 
-    
-    return () => clearInterval(interval);
-  }, []); 
-
- 
-  const minutes = Math.floor(timer / 60);
-  const seconds = timer % 60;
+    return () => clearInterval(timer); // Cleanup the interval on component unmount
+  }, [minutes, seconds]);
 
   if (error) {
     return <div className="alert alert-danger">{error}</div>;
@@ -67,27 +90,64 @@ console.log("first", finalPrice)
     return <div>Loading...</div>;
   }
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
+
   return (
     <>
+      <Navbarcomponent />
       <div className="container">
-        {/* Main image start */}
+        {data.upload && data.upload.length > 0 ? (
+          <div>
+          <Slider {...settings}>
+            {data.upload.slice(0, 4).map((image, index) => (
+              <div key={index}>
+                <img src={image.url} className="product-image mt-2" alt={`Product Image ${index}`} />
+              </div>
+            ))}
+          </Slider>
+          {/* <div className="other-images">
+                {data.upload.slice(4).map((image, index) => (
+                    <div key={index} className="thumbnail-image">
+                        <img src={image.url} alt={`Thumbnail ${index}`} />
+                    </div>
+                ))}
+            </div> */}
+
+          </div>
+
+          
+        ) : (
+          <div>No images found for this product.</div>
+        )}
         <div className="d-flex justify-content-between">
           <div className="offer-badge fw-bold">{data.discount}%</div>
-          <div className="center-image-card mt-5">
-            {data.url && <img src={data.url} width="100%" alt="Product" />}
-          </div>
-          <div className=''>
-            <div className="love-icon icon-container">
-              <img className="" src={Love} width={40} alt="Love icon" />
-            </div>
-            <div className="share-icon mt-2 icon-container">
-              <img className="" src={Share} width={40} alt="Share icon" />
-            </div>
-          </div>
         </div>
-
-        {/* Card details start */}
-        <div className="px-0 font-weight-bold text-black">
+        {/* <div className="px-0 font-weight-bold text-black mt-2">
+          <div className="product-title">{data.description}</div>
+        </div>
+        <div className="px-0 product-price">
+          <div className="buyingPrice font-weight-bold">
+            <span className="symbol">&#8377;</span>
+            <span className="price fw-bold ">
+              {Math.round(data.price - (data.price * data.discount) / 100)}
+            </span>
+          </div>
+          <div className="flex">
+            <div className="savings text-success">
+              You save: &#8377;{Math.round((data.price * data.discount) / 100)}
+            </div>
+          </div>
+        </div> */}
+        <div className='mt-5'>
+         <div className="px-0 font-weight-bold text-black mt-2">
           <div className="product-title">{data.description}</div>
         </div>
 
@@ -106,98 +166,54 @@ console.log("first", finalPrice)
             </div>
           </div>
           <div className="priceimg">
-            <img src={Prime} height="25px" weight="77px" alt="Prime" />
+            <img src="img/prime11.png" height="25px" weight="77px" alt="Prime" />
           </div>
         </div>
       </div>
+      </div>
 
-      {/* Offer end function */}
+      <div className="container-fluid mt-2">
+        <div className='retunsImg'>
+          <img src='/img/alldelivered.png' width="100%"/>
+        </div>
+      </div>
       <div className="offerEnd text-center py-3">
         <h4>
-          Offer ends in
-          <span className="offerTimer">
-            {`${minutes < 10 ? '0' : ''}${minutes}min ${seconds < 10 ? '0' : ''}${seconds}sec`}
-          </span>
+          {isExpired ? (
+            "Today's sale ended"
+          ) : (
+            <>
+              Offer ends in
+              <span className="offerTimer">
+                {`${minutes < 10 ? '0' : ''}${minutes}min ${seconds < 10 ? '0' : ''}${seconds}sec`}
+              </span>
+            </>
+          )}
         </h4>
       </div>
 
-      {/* Return delivered start */}
-      <div className="container-fluid">
-        <div className="px-0 py-4 d-flex justify-content-center feature-container product-extra bd-highlight py-1 flex-wrap">
-          <div className="featured-item d-flex align-items-center flex-column mb-4">
-            <img className="featured-img" src={Returns} alt="7 days Replacement" />
-            <span className="feature-title">7 days Replacement</span>
-          </div>
-          <div className="featured-item d-flex align-items-center flex-column mb-4 mx-4">
-            <img className="featured-img" src={Delivered} alt="Amazon Delivered" />
-            <span className="feature-title">Amazon Delivered</span>
-          </div>
-          <div className="featured-item d-flex align-items-center flex-column mb-4">
-            <img className="featured-img" src={Returns} alt="1 year warranty" />
-            <span className="feature-title">1 year warranty</span>
-          </div>
-        </div>
-
-        {/* Table start code */}
-        <div className="mt-5">
-          <p className="fs-5">Features & Details</p>
-          <table className="table table-striped table-bordered">
-            <thead className="thead-dark">
-              <tr>
-                <th>Product</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>color</td>
-                <td>{data.color}</td>
-              </tr>
-              <tr>
-                <td>model</td>
-                <td>{data.model}</td>
-              </tr>
-              <tr>
-                <td>manifacture</td>
-                <td>{data.manifacture}</td>
-              </tr>
-              <tr>
-                <td>material</td>
-                <td>{data.material}</td>
-              </tr>
-              <tr>
-                <td>style</td>
-                <td>{data.style}</td>
-              </tr>
-              <tr>
-                <td>weight</td>
-                <td>{data.weight}</td>
-              </tr>
-              <tr>
-                <td>uses</td>
-                <td>{data.uses}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div className="other-images">
+                {data.upload.slice(4).map((image, index) => (
+                    <div key={index} className="thumbnail-image">
+                        <img src={image.url} width="100%" alt={`Thumbnail ${index}`} />
+                    </div>
+                ))}
+            </div>
+       
+            <div className='footer mt-3 mb-5 pb-5'>
+        <img src='/img/footerimg.png' alt='' width="100%"/>
       </div>
 
-      {/* Button add to cart and buy now start */}
+
       <div className="container-fluid mt-5 fixed-bottom">
         <div className="row">
           <div className="col-6 text-center">
-            <button
-              className="btn btn-add-to-cart"
-              onClick={() => navigate('/card-form')}
-            >
+            <button className="btn btn-add-to-cart" onClick={() => navigate('/card-form')}>
               Add to Cart
             </button>
           </div>
           <div className="col-6 text-center">
-            <button
-              className="btn btn-buy-now"
-              onClick={() => navigate('/card-form')}
-            >
+            <button className="btn btn-buy-now btn-yellow" onClick={() => navigate('/card-form')}>
               Buy Now
             </button>
           </div>
@@ -208,8 +224,3 @@ console.log("first", finalPrice)
 };
 
 export default CardDetailComponent;
-
-
-
-
-

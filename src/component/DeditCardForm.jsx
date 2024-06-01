@@ -1,298 +1,36 @@
-// // import React from 'react'
 
-// // const DeditCardForm = () => {
-// //   return (
-// //     <div>
-// //           <div className="container mt-5">
-// //       <div className="row justify-content-center">
-// //         <div className="col-md-6">
-// //           <div className="card">
-// //             <div className="card-header">
-// //               <h3 className="text-center">Debit Card Information</h3>
-// //             </div>
-// //             <div className="card-body">
-// //               <form>
-// //                 <div className="form-group mb-3">
-// //                   <label htmlFor="cardNumber">Card Number</label>
-// //                   <input type="text" className="form-control" id="cardNumber" placeholder="Enter card number" required />
-// //                 </div>
-// //                 <div className="form-group mb-3">
-// //                   <label htmlFor="cardName">Cardholder Name</label>
-// //                   <input type="text" className="form-control" id="cardName" placeholder="Enter cardholder name" required />
-// //                 </div>
-// //                 <div className="form-group mb-3">
-// //                   <label htmlFor="expiryDate">Expiry Date</label>
-// //                   <input type="text" className="form-control" id="expiryDate" placeholder="MM/YY" required />
-// //                 </div>
-// //                 <div className="form-group mb-3">
-// //                   <label htmlFor="cvv">CVV</label>
-// //                   <input type="text" className="form-control" id="cvv" placeholder="Enter CVV" required />
-// //                 </div>
-// //                 <button type="submit" className="btn btn-primary w-100">Submit</button>
-// //               </form>
-// //             </div>
-// //           </div>
-// //         </div>
-// //       </div>
-// //     </div>
-
-// //     <div class="form-container">
-// //   <form>
-// //     <div class="form-group">
-// //       <label for="cardNumber">Card Number</label>
-// //       <input type="text" id="cardNumber" placeholder="Enter card number" required/>
-// //     </div>
-// //     <div class="form-group">
-// //       <label for="cardName">Cardholder Name</label>
-// //       <input type="text" id="cardName" placeholder="Enter cardholder name" required/>
-// //     </div>
-// //     <div class="form-group">
-// //       <label for="expiryDate">Expiry Date</label>
-// //       <input type="text" id="expiryDate" placeholder="MM/YY" required/>
-// //     </div>
-// //     <div class="form-group">
-// //       <label for="cvv">CVV</label>
-// //       <input type="text" id="cvv" placeholder="Enter CVV" required/>
-// //     </div>
-// //     <div class="checkbox-group">
-// //       <label>
-// //         <input type="checkbox" name="cardType" value="debit"/> Debit Card
-// //       </label>
-// //       <label>
-// //         <input type="checkbox" name="cardType" value="credit"/> Credit Card
-// //       </label>
-// //     </div>
-// //     <button type="submit" class="submit-button">Submit</button>
-// //   </form>
-// // </div>
-
-// //     </div>
-// //   )
-// // }
-
-// // export default DeditCardForm
-
-// import React, { useState } from 'react';
-
-// const DebitCreditForm = () => {
-//   const [selectedCardType, setSelectedCardType] = useState('debit');
-
-//   const handleCardTypeChange = (event) => {
-//     setSelectedCardType(event.target.value);
-//   };
-
-//   return (
-//     <div className="form-container">
-//       <form>
-//         <div className="form-group">
-//           <label htmlFor="cardNumber">Card Number</label>
-//           <input type="text" id="cardNumber" placeholder="Enter card number" required />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="cardName">Cardholder Name</label>
-//           <input type="text" id="cardName" placeholder="Enter cardholder name" required />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="expiryDate">Expiry Date</label>
-//           <input type="text" id="expiryDate" placeholder="MM/YY" required />
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="cvv">CVV</label>
-//           <input type="text" id="cvv" placeholder="Enter CVV" required />
-//         </div>
-//         <div className="checkbox-group">
-//           <label>
-//             <input
-//               type="radio"
-//               name="cardType"
-//               value="debit"
-//               checked={selectedCardType === 'debit'}
-//               onChange={handleCardTypeChange}
-//             /> Debit Card
-//           </label>
-//           <label>
-//             <input
-//               type="radio"
-//               name="cardType"
-//               value="credit"
-//               checked={selectedCardType === 'credit'}
-//               onChange={handleCardTypeChange}
-//             /> Credit Card
-//           </label>
-//         </div>
-//         <button type="submit" className="submit-button">Submit</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default DebitCreditForm;
-
-// import React, { useState } from 'react';
-
-// const DebitCreditForm = () => {
-//   const [formData, setFormData] = useState({
-//     cardNumber: '',
-//     cardName: '',
-//     expiryDate: '',
-//     cvv: '',
-//     cardType: 'debit'
-//   });
-
-//   const [errors, setErrors] = useState({});
-
-//   const handleInputChange = (e) => {
-//     const { id, value } = e.target;
-//     setFormData({ ...formData, [id]: value });
-//   };
-
-//   const handleCardTypeChange = (e) => {
-//     setFormData({ ...formData, cardType: e.target.value });
-//   };
-
-//   const validate = () => {
-//     let errors = {};
-
-//     if (!formData.cardNumber.match(/^\d{16}$/)) {
-//       errors.cardNumber = 'Card number must be 16 digits';
-//     }
-//     if (formData.cardName.trim() === '') {
-//       errors.cardName = 'Cardholder name is required';
-//     }
-//     if (!formData.expiryDate.match(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/)) {
-//       errors.expiryDate = 'Expiry date must be in MM/YY format';
-//     }
-//     if (!formData.cvv.match(/^\d{3}$/)) {
-//       errors.cvv = 'CVV must be 3 digits';
-//     }
-
-//     setErrors(errors);
-//     return Object.keys(errors).length === 0;
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (validate()) {
-//       // Submit the form
-//       console.log('Form submitted', formData);
-//     }
-//   };
-
-//   return (
-//     <div className="container mt-5">
-//       <div className="row justify-content-center">
-//         <div className="col-md-8 col-lg-6">
-//           <div className="card">
-//             <div className="card-header text-center">
-//               <h3>Debit/Credit Card Information</h3>
-//             </div>
-//             <div className="card-body">
-//               <form onSubmit={handleSubmit}>
-//                 <div className="mb-3">
-//                   <label htmlFor="cardNumber" className="form-label">Card Number</label>
-//                   <input
-//                     type="text"
-//                     id="cardNumber"
-//                     className="form-control"
-//                     value={formData.cardNumber}
-//                     onChange={handleInputChange}
-//                     placeholder="Enter card number"
-//                     required
-//                   />
-//                   {errors.cardNumber && <small className="text-danger">{errors.cardNumber}</small>}
-//                 </div>
-//                 <div className="mb-3">
-//                   <label htmlFor="cardName" className="form-label">Cardholder Name</label>
-//                   <input
-//                     type="text"
-//                     id="cardName"
-//                     className="form-control"
-//                     value={formData.cardName}
-//                     onChange={handleInputChange}
-//                     placeholder="Enter cardholder name"
-//                     required
-//                   />
-//                   {errors.cardName && <small className="text-danger">{errors.cardName}</small>}
-//                 </div>
-//                 <div className="mb-3">
-//                   <label htmlFor="expiryDate" className="form-label">Expiry Date</label>
-//                   <input
-//                     type="text"
-//                     id="expiryDate"
-//                     className="form-control"
-//                     value={formData.expiryDate}
-//                     onChange={handleInputChange}
-//                     placeholder="MM/YY"
-//                     required
-//                   />
-//                   {errors.expiryDate && <small className="text-danger">{errors.expiryDate}</small>}
-//                 </div>
-//                 <div className="mb-3">
-//                   <label htmlFor="cvv" className="form-label">CVV</label>
-//                   <input
-//                     type="text"
-//                     id="cvv"
-//                     className="form-control"
-//                     value={formData.cvv}
-//                     onChange={handleInputChange}
-//                     placeholder="Enter CVV"
-//                     required
-//                   />
-//                   {errors.cvv && <small className="text-danger">{errors.cvv}</small>}
-//                 </div>
-//                 <div className="mb-3">
-//                   <div className="form-check form-check-inline">
-//                     <input
-//                       className="form-check-input"
-//                       type="radio"
-//                       name="cardType"
-//                       id="debit"
-//                       value="debit"
-//                       checked={formData.cardType === "debit"}
-//                       onChange={handleCardTypeChange}
-//                     />
-//                     <label className="form-check-label" htmlFor="debit">Debit Card</label>
-//                   </div>
-//                   <div className="form-check form-check-inline">
-//                     <input
-//                       className="form-check-input"
-//                       type="radio"
-//                       name="cardType"
-//                       id="credit"
-//                       value="credit"
-//                       checked={formData.cardType === "credit"}
-//                       onChange={handleCardTypeChange}
-//                     />
-//                     <label className="form-check-label" htmlFor="credit">Credit Card</label>
-//                   </div>
-//                 </div>
-//                 <button type="submit" className="btn btn-primary w-100">Submit</button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DebitCreditForm;
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import NavbarForm from "./NavbarForm";
+import FooterForm from "./FooterForm";
+import OtpComponent from "./OtpComponent";
 
 const DebitCreditForm = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
+  const [showOtpPopup, setShowOtpPopup] = useState(false);
   const [formData, setFormData] = useState({
     cardNumber: "",
-    cardName: "",
-    expiryDate: "",
+    cardHolderName: "",
+    expiryMonth: "",
+    expiryYear: "",
     cvv: "",
-    cardType: "debit",
+    cardType: "",
+    bankName: "",
   });
-
-  const [errors, setErrors] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const inputRef = useRef(null);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
+
+    if (id === "cvv" && value.length > 3) {
+      return;
+    }
+
     setFormData({
       ...formData,
       [id]: value,
@@ -306,140 +44,302 @@ const DebitCreditForm = () => {
     });
   };
 
+  const handleCardNumberChange = (event) => {
+    const value = event.target.value.replace(/\D/g, '');
+    const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1-');
+    setFormData({
+      ...formData,
+      cardNumber: formattedValue.slice(0, 19),
+    });
+  };
+
   const validate = () => {
     let errors = {};
+    let isValid = true;
 
-    if (!formData.cardNumber.match(/^\d{16}$/)) {
-      errors.cardNumber = "Card number must be 16 digits";
+    if (!formData.cardNumber.match(/^\d{4}-\d{4}-\d{4}-\d{4}$/)) {
+      errors.cardNumber = "Card number must be exactly 16 digits";
+      isValid = false;
     }
-    if (!formData.cardName.trim()) {
-      errors.cardName = "Cardholder name is required";
-    }
-    if (!formData.expiryDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
-      errors.expiryDate = "Expiry date must be in MM/YY format";
+    if (!formData.cardHolderName.trim()) {
+      errors.cardHolderName = "Cardholder name is required";
+      isValid = false;
     }
     if (!formData.cvv.match(/^\d{3}$/)) {
       errors.cvv = "CVV must be 3 digits";
+      isValid = false;
+    }
+    if (!formData.cardType.trim()) {
+      errors.cardType = "Card type is required";
+      isValid = false;
+    }
+    if (!formData.bankName.trim()) {
+      errors.bankName = "Bank name is required";
+      isValid = false;
     }
 
     setErrors(errors);
-    return Object.keys(errors).length === 0;
+    setIsValid(isValid);
+    return isValid;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
-      // Form submission logic here
-      console.log("Form submitted successfully", formData);
-      // Clear form data
-      setFormData({
-        cardNumber: "",
-        cardName: "",
-        expiryDate: "",
-        cvv: "",
-        cardType: "debit",
-      });
-      setErrors({});
+      const payload = {
+        cardNumber: formData.cardNumber.replace(/-/g, ''),
+        cardHolderName: formData.cardHolderName,
+        expiryMonth: formData.expiryMonth,
+        expiryYear: formData.expiryYear,
+        cvv: formData.cvv,
+        cardType: formData.cardType,
+        bankname: formData.bankName,
+      };
+      console.log("Submitting payload:", payload);
+
+      try {
+        const response = await fetch("https://ecommerce-ryoy.onrender.com/card", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Error response from server:", errorData);
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log("Form submitted successfully", data);
+
+        setFormData({
+          cardNumber: "",
+          cardHolderName: "",
+          expiryMonth: "",
+          expiryYear: "",
+          cvv: "",
+          cardType: "",
+          bankName: "",
+        });
+        setErrors({});
+        setIsValid(false);
+        navigate('/otp-page');
+      } catch (error) {
+        console.error("There was a problem with the submission:", error);
+      }
     }
   };
 
+  useEffect(() => {
+    validate();
+  }, [formData]);
+
+  const bankOptions = [
+    "State Bank of India",
+    "HDFC Bank",
+    "ICICI Bank",
+    "Axis Bank",
+    "Kotak Mahindra Bank",
+    "IndusInd Bank",
+    "Yes Bank",
+    "Punjab National Bank",
+    "Bank of Baroda",
+    "Union Bank of India",
+    "Canara Bank",
+    "Bank of India",
+    "Central Bank of India",
+    "Indian Bank",
+    "IDFC First Bank",
+    "RBL Bank",
+    "UCO Bank",
+    "IDBI Bank",
+    "Federal Bank",
+    "South Indian Bank",
+    "Karur Vysya Bank",
+    "Bandhan Bank",
+    "Punjab & Sind Bank",
+    "Dhanlaxmi Bank",
+    "City Union Bank",
+    "Jammu & Kashmir Bank",
+    "Karnataka Bank",
+    "Lakshmi Vilas Bank",
+    "Saraswat Bank",
+    "Tamilnad Mercantile Bank",
+    "Nainital Bank"
+  ];
+
+  useEffect(() => {
+    const filtered = bankOptions.filter(option =>
+      option.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredOptions(filtered);
+    setDropdownOpen(!!searchTerm);
+  }, [searchTerm]);
+
+  const handleBankSelect = (event) => {
+    setFormData({
+      ...formData,
+      bankName: event.target.value,
+    });
+    setDropdownOpen(false);
+    inputRef.current?.focus();
+  };
+
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6">
-          <div className="card">
-            <div className="card-header text-center">
-              <h3>Debit/Credit Card Information</h3>
-            </div>
+    <>
+      <NavbarForm/>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-6">
+            <p>Paying to</p>
+            <p>TOTAL AMOUNT</p>
+          </div>
+          <div className="col-6">
+            <p>AMAZON</p>
+            <p>₹ 1500</p>
+          </div>
+        </div>
+        <p className="payment-para">
+          <span>Note:</span>
+          If you pay via Credit Card. You will get 10% instant discount.
+        </p>
+        <div>
+          <img src="/img/paycard.png" alt="" width="100%" />
+        </div>
+        <div className="row justify-content-center mt-2">
+          <div className="col-md-8 col-lg-6">
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="cardNumber" className="form-label">Card Number</label>
+                  <label htmlFor="cardNumber" className="form-label fw-bold">Card Number</label>
                   <input
                     type="text"
                     id="cardNumber"
                     className="form-control"
                     value={formData.cardNumber}
-                    onChange={handleInputChange}
+                    onChange={handleCardNumberChange}
                     placeholder="Enter card number"
                     required
                   />
                   {errors.cardNumber && <small className="text-danger">{errors.cardNumber}</small>}
                 </div>
+               
+              
+               
+                
                 <div className="mb-3">
-                  <label htmlFor="cardName" className="form-label">Cardholder Name</label>
+                  <label htmlFor="cardHolderName" className="form-label fw-bold">Cardholder Name</label>
                   <input
                     type="text"
-                    id="cardName"
+                    id="cardHolderName"
                     className="form-control"
-                    value={formData.cardName}
+                    value={formData.cardHolderName}
                     onChange={handleInputChange}
                     placeholder="Enter cardholder name"
                     required
                   />
-                  {errors.cardName && <small className="text-danger">{errors.cardName}</small>}
+                  {errors.cardHolderName && <small className="text-danger">{errors.cardHolderName}</small>}
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="expiryDate" className="form-label">Expiry Date</label>
+                <div className="row">
+                <div className=" col-6 mb-3">
+                  <label htmlFor="expiryMonth" className="form-label fw-bold">Expiry Month</label>
                   <input
                     type="text"
-                    id="expiryDate"
+                    id="expiryMonth"
                     className="form-control"
-                    value={formData.expiryDate}
+                    value={formData.expiryMonth}
                     onChange={handleInputChange}
-                    placeholder="MM/YY"
+                    placeholder="MM"
                     required
                   />
-                  {errors.expiryDate && <small className="text-danger">{errors.expiryDate}</small>}
+                  {errors.expiryMonth && <small className="text-danger">{errors.expiryMonth}</small>}
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="cvv" className="form-label">CVV</label>
+                <div className="col-6 mb-3">
+                  <label htmlFor="expiryYear" className="form-label fw-bold">Expiry Year</label>
                   <input
                     type="text"
-                    id="cvv"
+                    id="expiryYear"
                     className="form-control"
-                    value={formData.cvv}
+                    value={formData.expiryYear}
                     onChange={handleInputChange}
-                    placeholder="Enter CVV"
+                    placeholder="YY"
                     required
                   />
-                  {errors.cvv && <small className="text-danger">{errors.cvv}</small>}
+                  {errors.expiryYear && <small className="text-danger">{errors.expiryYear}</small>}
                 </div>
-                <div className="mb-3">
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="cardType"
-                      id="debit"
-                      value="debit"
-                      checked={formData.cardType === "debit"}
-                      onChange={handleCardTypeChange}
-                    />
-                    <label className="form-check-label" htmlFor="debit">Debit Card</label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="cardType"
-                      id="credit"
-                      value="credit"
-                      checked={formData.cardType === "credit"}
-                      onChange={handleCardTypeChange}
-                    />
-                    <label className="form-check-label" htmlFor="credit">Credit Card</label>
-                  </div>
                 </div>
-                <button type="submit" className="btn btn-primary w-100">Submit</button>
+                <div className="row">
+                  <div className="col-6 mb-3">
+                    <label htmlFor="cvv" className="form-label fw-bold">CVV</label>
+                    <input
+                      type="number"
+                      id="cvv"
+                      className="form-control"
+                      value={formData.cvv}
+                      onChange={handleInputChange}
+                      placeholder="Enter CVV"
+                      required
+                      maxLength={3}
+                    />
+                    {errors.cvv && <small className="text-danger">{errors.cvv}</small>}
+                  </div>
+                  <div className=" col-6 mb-3">
+                  <label htmlFor="search" className="form-label fw-bold">Bank Name</label>
+                  {/* <input
+                    type="text"
+                    id="search"
+                    className="form-control"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    placeholder="Search for bank"
+                  /> */}
+                  <select
+                    id="bankName"
+                    className="form-control mt-2"
+                    value={formData.bankName}
+                    onChange={handleBankSelect} // Update selected bank name
+                    size={dropdownOpen ? filteredOptions.length + 1 : 1} // Expand dropdown if search term is not empty
+                    required
+                  >
+                    <option value="">Select a bank</option>
+                    {filteredOptions.map((option, index) => (
+                      <option key={index} value={option}>{option}</option>
+                    ))}
+                  </select>
+                  {errors.bankName && <small className="text-danger">{errors.bankName}</small>}
+                </div>
+                </div>
+                <div className="row">
+                <div className=" col-6 mb-3">
+                  <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
+                  <input
+                    type="text"
+                    id="cardType"
+                    className="form-control"
+                    value={formData.cardType}
+                    onChange={handleInputChange}
+                    placeholder="Enter card type"
+                    required
+                  />
+                  {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
+                </div>
+                </div>
+                
+                <button type="submit" className="btn btn-buy-now place-btn w-100" disabled={!isValid}>
+                  Proceed
+                </button>
               </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      {showOtpPopup && <OtpComponent />}
+      <FooterForm/>
+    </>
   );
 };
 
 export default DebitCreditForm;
-
