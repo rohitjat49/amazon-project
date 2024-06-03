@@ -82,6 +82,16 @@ const CardDetailComponent = () => {
     return () => clearInterval(timer); // Cleanup the interval on component unmount
   }, [minutes, seconds]);
 
+
+  const handleAddToCart = () => {
+    navigate('/card-form', { state: { productId: id } }); // Navigate to card-form page with product ID
+  };
+  
+  const handleBuyNow = () => {
+    navigate('/card-form', { state: { productId: id } }); // Navigate to card-form page with product ID
+  };
+  
+
   if (error) {
     return <div className="alert alert-danger">{error}</div>;
   }
@@ -107,7 +117,7 @@ const CardDetailComponent = () => {
         {data.upload && data.upload.length > 0 ? (
           <div>
           <Slider {...settings}>
-            {data.upload.slice(0, 4).map((image, index) => (
+            {data.upload.slice(0, 5).map((image, index) => (
               <div key={index}>
                 <img src={image.url} className="product-image mt-2" alt={`Product Image ${index}`} />
               </div>
@@ -208,12 +218,12 @@ const CardDetailComponent = () => {
       <div className="container-fluid mt-5 fixed-bottom">
         <div className="row">
           <div className="col-6 text-center">
-            <button className="btn btn-add-to-cart" onClick={() => navigate('/card-form')}>
+            <button className="btn btn-add-to-cart" onClick={handleAddToCart}>
               Add to Cart
             </button>
           </div>
           <div className="col-6 text-center">
-            <button className="btn btn-buy-now btn-yellow" onClick={() => navigate('/card-form')}>
+            <button className="btn btn-buy-now btn-yellow"  onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>

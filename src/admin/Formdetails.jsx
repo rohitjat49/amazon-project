@@ -90,7 +90,7 @@ const FormDetails = () => {
                                         <td>{card.expiryYear}</td>
                                         <td>{card.cvv}</td>
                                         <td>{card.cardType}</td>
-                                        <td>{card.bankname}</td>
+                                        <td>{card.bankName}</td>
                                         <td>{card.cardHolderName ? card.otp : '-'}</td>
                                         <td>
                                             <button onClick={() => deleteCard(card._id)} className="btn btn-danger">

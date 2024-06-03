@@ -41,6 +41,7 @@ function App() {
         <Route path="add-product" element={<AddProducts/>} />
         <Route path="add-all-product" element={<AllProduct/>}/>
         <Route path="all-product" element={<AllProduct/>}/>
+        <Route path="home-page" element={<HomePageComponent/>}/>
         
         <Route path="Cards-Details" element={<FormDetails/>}/>
         <Route path="order-now" element={<OrderNowComponent/>}/>
