@@ -2031,7 +2031,7 @@ const DebitCreditForm = () => {
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="credit" className="ms-2 mx-5">Credit</label>
+                      <label htmlFor="credit" className="ms-1 me-2">Credit</label>
                       <input
                         type="radio"
                         id="debit"
@@ -2041,7 +2041,7 @@ const DebitCreditForm = () => {
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="debit" className="ms-2">Debit</label>
+                      <label htmlFor="debit" className="ms-1">Debit</label>
                     </div>
                     {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
                   </div>
