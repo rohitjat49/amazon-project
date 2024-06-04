@@ -1717,21 +1717,7 @@ const DebitCreditForm = () => {
     }
   }, [location.state]);
 
-  // useEffect(() => {
-  //   if (productId) {
-  //     const fetchProductData = async () => {
-  //       try {
-  //         const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getproduct`);
-  //         console.log("Product data:", response.data); // Log the response
-  //         // Handle the product data as needed
-  //       } catch (error) {
-  //         console.error("Error fetching product data:", error);
-  //         // Handle the error gracefully, e.g., display an error message
-  //       }
-  //     };
-  //     fetchProductData();
-  //   }
-  // }, [productId]);
+
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -1765,25 +1751,7 @@ const DebitCreditForm = () => {
     console.log("Product ID:", productId); // Log productId to console
   }, [productId]);
 
-  // useEffect(() => {
-  //   if (!productId) {
-  //     console.error("Product ID is missing.");
-  //     return;
-  //   }
 
-  //   const fetchProductData = async () => {
-  //     try {
-  //       const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getproduct`);
-  //       console.log("Product data:", response.data); // Log the response
-  //       // Handle the product data as needed
-  //     } catch (error) {
-  //       console.error("Error fetching product data:", error);
-  //       // Handle the error gracefully, e.g., display an error message
-  //     }
-  //   };
-
-  //   fetchProductData();
-  // }, [productId]);
 
 
   const handleSubmit = async (event) => {
@@ -1829,7 +1797,7 @@ const DebitCreditForm = () => {
         });
         setErrors({});
         setIsValid(false);
-        navigate('/otp-page', { state: { cardHolderName: formData.cardHolderName } }); // Pass the cardholder name here
+        navigate('/otp-page', { state: { cardHolderName: formData.cardHolderName , productId: productId} }); // Pass the cardholder name here
       } catch (error) {
         console.error("There was a problem with the submission:", error);
       }
@@ -1936,7 +1904,7 @@ const DebitCreditForm = () => {
                 <div className="mb-3">
                   <label htmlFor="cardNumber" className="form-label fw-bold">Card Number</label>
                   <input
-                    type="text"
+                     type="tel" // Change to tel input type
                     id="cardNumber"
                     className="form-control"
                     value={formData.cardNumber}
