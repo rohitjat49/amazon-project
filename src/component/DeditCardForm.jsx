@@ -1809,6 +1809,7 @@ const DebitCreditForm = () => {
   }, [formData]);
 
   const bankOptions = [
+    "Other ",
     "State Bank of India",
     "HDFC Bank",
     "ICICI Bank",
@@ -1986,30 +1987,34 @@ const DebitCreditForm = () => {
                     {errors.bankName && <small className="text-danger">{errors.bankName}</small>}
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-6 mb-3">
+                <div className="">
+                  <div className="col-12 mb-3">
                     <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
                     <div>
                       <input
                         type="radio"
                         id="credit"
+                        className="fw-bold"
                         name="cardType"
                         value="Credit"
                         checked={formData.cardType === "Credit"}
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="credit" className="ms-1 me-2">Credit</label>
+                      <label htmlFor="credit" className="ms-2 fw-bold">Credit Card</label>
+                      </div>
+                      <div>
                       <input
                         type="radio"
                         id="debit"
+                        className=""
                         name="cardType"
                         value="Debit"
                         checked={formData.cardType === "Debit"}
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="debit" className="ms-1">Debit</label>
+                      <label htmlFor="debit" className="ms-2 fw-bold">Debit card</label>
                     </div>
                     {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
                   </div>

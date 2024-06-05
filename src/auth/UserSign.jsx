@@ -33,7 +33,8 @@ const UserSign = () => {
             // Here, you don't need to handle the token anymore
             
             setMessage('Signup successful!');
-            navigate('/User-Details'); // Navigate to User-Details on successful signup
+            // navigate('/User-Details'); // Navigate to User-Details on successful signup
+            navigate('/User-card');
         } catch (error) {
             console.error('Error:', error.message);
             setMessage(error.message || 'Signup failed. Please try again.');

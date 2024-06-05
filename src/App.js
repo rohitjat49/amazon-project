@@ -50,6 +50,7 @@ function App() {
         <Route path="otp-page" element={<OtpComponent/>}/>
         <Route path="User-Details" element={<AdminUser/>}/>
         <Route path="User-Create" element={<UserSign/>}/>
+        <Route path="User-card" element={<FormDetails/>}/>
         
        
        

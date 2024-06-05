@@ -1000,6 +1000,12 @@ const OrderNowComponent = () => {
           </div>  
         </div>
 
+        <div className='box mt-3 border border-1 p-2'>
+          <div className='yellow'> 
+            <p className='p-one'> Get Extra Discount On Credit Card</p>
+          </div>  
+        </div>
+
         {product && (
           <div className='row mt-3'>
             <div className='col-6'>
