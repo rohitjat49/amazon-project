@@ -17,6 +17,7 @@ const AddProducts = () => {
     const [people, setPeople] = useState();
     const [price, setPrice] = useState();
     const [discount, setDiscount] = useState();
+    const [offer, setOffer] = useState();
     const [error, setError] = useState("");
 
     const addProduct = async (e) => {
@@ -38,6 +39,7 @@ const AddProducts = () => {
         formData.append('people', people);
         formData.append('price',price);
         formData.append('discount', discount);
+        formData.append('offer',offer);
 
         try {
             const token = localStorage.getItem('token');
@@ -287,6 +289,16 @@ const AddProducts = () => {
                                 className='form-control' 
                                 value={discount}
                                 onChange={e => setDiscount(e.target.value)} 
+                                required 
+                            />
+                        </FormGroup>
+                        <FormGroup className='form-group'>
+                            <span>Offer limited time</span>
+                            <input 
+                                type="text" 
+                                className='form-control' 
+                                value={offer}
+                                onChange={e => setOffer(e.target.value)} 
                                 required 
                             />
                         </FormGroup>

@@ -176,8 +176,11 @@ const CardComponent = () => {
                 <div className="description"  style={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.description}</div>
               </div>
               <div className="price-with-discount text-danger">
-                <img src="/img/prime11.png" alt="" className="prime-icon" />
-                <br />
+                <div className=' offer-limit rounded-2'>
+                  <p className='text-white p-2 '>{item.offer}</p>
+                  </div>
+                {/* <img src="/img/prime11.png" alt="" className="prime-icon" /> */}
+                {/* <br /> */}
                 <div className="buyingPrice font-weight-bold">
                   <span className="symbol">&#8377;</span>
                   <span className="price fw-bold ">{Math.round(item.price - (item.price * item.discount / 100))}</span>

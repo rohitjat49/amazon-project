@@ -117,7 +117,7 @@ const CardDetailComponent = () => {
         {data.upload && data.upload.length > 0 ? (
           <div>
           <Slider {...settings}>
-            {data.upload.slice(0, 5).map((image, index) => (
+            {data.upload.slice(0, 4).map((image, index) => (
               <div key={index}>
                 <img src={image.url} className="product-image mt-2" alt={`Product Image ${index}`} />
               </div>

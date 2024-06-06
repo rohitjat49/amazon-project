@@ -546,5 +546,12 @@ card css */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.offer-limit{
+  background-color: #8e0004;
+}
+
+.credicard{
+  font-size: 20px;
+}
 
 

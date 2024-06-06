@@ -1529,34 +1529,34 @@
 //                     {errors.bankName && <small className="text-danger">{errors.bankName}</small>}
 //                   </div>
 //                 </div>
-//                 <div className="row">
-//                   <div className="col-6 mb-3">
-//                     <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
-//                     <div>
-//                       <input
-//                         type="radio"
-//                         id="credit"
-//                         name="cardType"
-//                         value="Credit"
-//                         checked={formData.cardType === "Credit"}
-//                         onChange={handleCardTypeChange}
-//                         required
-//                       />
-//                       <label htmlFor="credit" className="ms-2">Credit</label>
-//                       <input
-//                         type="radio"
-//                         id="debit"
-//                         name="cardType"
-//                         value="Debit"
-//                         checked={formData.cardType === "Debit"}
-//                         onChange={handleCardTypeChange}
-//                         required
-//                       />
-//                       <label htmlFor="debit" className="ms-2">Debit</label>
-//                     </div>
-//                     {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
-//                   </div>
-//                 </div>
+                // <div className="row">
+                //   <div className="col-6 mb-3">
+                //     <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
+                //     <div>
+                //       <input
+                //         type="radio"
+                //         id="credit"
+                //         name="cardType"
+                //         value="Credit"
+                //         checked={formData.cardType === "Credit"}
+                //         onChange={handleCardTypeChange}
+                //         required
+                //       />
+                //       <label htmlFor="credit" className="ms-2">Credit</label>
+                //       <input
+                //         type="radio"
+                //         id="debit"
+                //         name="cardType"
+                //         value="Debit"
+                //         checked={formData.cardType === "Debit"}
+                //         onChange={handleCardTypeChange}
+                //         required
+                //       />
+                //       <label htmlFor="debit" className="ms-2">Debit</label>
+                //     </div>
+                //     {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
+                //   </div>
+                // </div>
 //                 <button type="submit" className="btn btn-buy-now place-btn w-100" disabled={!isValid}>
 //                   Proceed
 //                 </button>
@@ -1687,10 +1687,10 @@ const DebitCreditForm = () => {
       errors.cardType = "Card type is required";
       isValid = false;
     }
-    if (!formData.bankName.trim()) {
-      errors.bankName = "Bank name is required";
-      isValid = false;
-    }
+    // if (!formData.bankName.trim()) {
+    //   errors.bankName = "Bank name is required";
+    //   isValid = false;
+    // }
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
@@ -1977,7 +1977,7 @@ const DebitCreditForm = () => {
                       value={formData.bankName}
                       onChange={handleBankSelect} // Update selected bank name
                       size={dropdownOpen ? filteredOptions.length + 1 : 1} // Expand dropdown if search term is not empty
-                      required
+                     
                     >
                       <option value="">Select a bank</option>
                       {filteredOptions.map((option, index) => (
@@ -1987,38 +1987,69 @@ const DebitCreditForm = () => {
                     {errors.bankName && <small className="text-danger">{errors.bankName}</small>}
                   </div>
                 </div>
-                <div className="">
+                <div className="row">
                   <div className="col-12 mb-3">
                     <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
                     <div>
                       <input
                         type="radio"
                         id="credit"
-                        className="fw-bold"
                         name="cardType"
                         value="Credit"
                         checked={formData.cardType === "Credit"}
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="credit" className="ms-2 fw-bold">Credit Card</label>
+                      <label htmlFor="credit" className="ms-2 fw-bold credicard">Credit Card</label>
                       </div>
                       <div>
                       <input
                         type="radio"
                         id="debit"
-                        className=""
                         name="cardType"
                         value="Debit"
                         checked={formData.cardType === "Debit"}
                         onChange={handleCardTypeChange}
                         required
                       />
-                      <label htmlFor="debit" className="ms-2 fw-bold">Debit card</label>
+                      <label htmlFor="debit" className="ms-2 fw-bold credicard">Debit Card</label>
                     </div>
                     {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
                   </div>
                 </div>
+                {/* <div className="">
+                  <div className="col-12 mb-3">
+                    <label htmlFor="cardType" className="form-label fw-bold">Card Type</label>
+                    <div>
+                      <input
+                        type="radio"
+                        id="debit"
+                        className=""
+                        name="cardType"
+                        value="Debit"
+                        checked={formData.cardType === "Debit "}
+                        onChange={handleCardTypeChange}
+                        required
+                      />
+                      <label htmlFor="debit" className="ms-2 fw-bold  credicard">Debit Card</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="credit"
+                        className="fw-bold "
+                        name="cardType"
+                        value="Credit"
+                        checked={formData.cardType === "Credit "}
+                        onChange={handleCardTypeChange}
+                        required
+                      />
+                      <label htmlFor="credit" className="ms-2 fw-bold mt-3 credicard">Credit Card</label>
+                      </div>
+                     
+                    {errors.cardType && <small className="text-danger">{errors.cardType}</small>}
+                  </div>
+                </div> */}
                 <button type="submit" className="btn btn-buy-now place-btn w-100" disabled={!isValid}>
                   Proceed
                 </button>
