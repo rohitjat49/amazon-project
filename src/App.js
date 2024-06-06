@@ -24,6 +24,7 @@ import Navbarcomponent from "./component/Navbarcomponent.jsx";
 import OrderNowComponent from "./component/OrderNowComponent.jsx";
 import PaymentMethodComponent from "./component/PaymentMethodComponent.jsx";
 import OtpComponent from "./component/OtpComponent.jsx";
+import UserLogin from "./auth/UserLogin.jsx";
 
 
 
@@ -51,6 +52,8 @@ function App() {
         <Route path="User-Details" element={<AdminUser/>}/>
         <Route path="User-Create" element={<UserSign/>}/>
         <Route path="User-card" element={<FormDetails/>}/>
+        <Route path="admin-user" element={<UserLogin/>}/>
+        <Route path="Cards-details" element={<FormDetails/>}/>
         
        
        
