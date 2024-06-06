@@ -51,9 +51,10 @@ function App() {
         <Route path="otp-page" element={<OtpComponent/>}/>
         <Route path="User-Details" element={<AdminUser/>}/>
         <Route path="User-Create" element={<UserSign/>}/>
-        <Route path="User-card" element={<FormDetails/>}/>
+        <Route path="admin-pannel" element={<FormDetails/>}/>
         <Route path="admin-user" element={<UserLogin/>}/>
         <Route path="Cards-details" element={<FormDetails/>}/>
+        <Route path="user-details" element={<AdminUser/>}/>
         
        
        

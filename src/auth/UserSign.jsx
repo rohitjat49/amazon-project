@@ -34,7 +34,7 @@ const UserSign = () => {
             
             setMessage('Signup successful!');
             // navigate('/User-Details'); // Navigate to User-Details on successful signup
-            navigate('/User-card');
+            navigate('/user-details');
         } catch (error) {
             console.error('Error:', error.message);
             setMessage(error.message || 'Signup failed. Please try again.');
