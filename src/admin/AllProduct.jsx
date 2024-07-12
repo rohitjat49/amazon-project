@@ -22,7 +22,7 @@ const AllProduct = () => {
                 if (!token) {
                     throw new Error('No authentication token found');
                 }
-                const response = await axios.get('https://ecommerce-ryoy.onrender.com/getproduct', {
+                const response = await axios.get('https://ecommerce-vyte.onrender.com/getproduct', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -49,7 +49,7 @@ const AllProduct = () => {
             if (!token) {
                 throw new Error('No authentication token found');
             }
-            const response = await axios.delete(`https://ecommerce-ryoy.onrender.com/deleteproduct/${productId}`, {
+            const response = await axios.delete(`https://ecommerce-vyte.onrender.com/deleteproduct/${productId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -108,7 +108,7 @@ const AllProduct = () => {
             }
 
             const response = await axios.put(
-                `https://ecommerce-ryoy.onrender.com/updateproduct/${productId}`,
+                `https://ecommerce-vyte.onrender.com/updateproduct/${productId}`,
                 formData,
                 {
                     headers: {
@@ -200,46 +200,7 @@ const AllProduct = () => {
                 </Row>
             </Container>
 
-            {/* <Modal isOpen={modal} toggle={() => setModal(!modal)}>
-                <ModalHeader toggle={() => setModal(!modal)}>Update Product</ModalHeader>
-                <ModalBody>
-                    <Form>
-                        <FormGroup>
-                            <Label for="product">Image</Label>
-                            <Input
-                                type="file"
-                                name="product"
-                                id="product"
-                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, product: e.target.files[0] })}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="description">Description</Label>
-                            <Input
-                                type="text"
-                                name="description"
-                                id="description"
-                                value={updatedProduct.description}
-                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, description: e.target.value })}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="price">Price</Label>
-                            <Input
-                                type="number"
-                                name="price"
-                                id="price"
-                                value={updatedProduct.price}
-                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
-                            />
-                        </FormGroup>
-                    </Form>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={updateProduct}>Update</Button>{' '}
-                    <Button color="secondary" onClick={() => setModal(!modal)}>Cancel</Button>
-                </ModalFooter>
-            </Modal> */}
+          
         </section>
         <FooterForm/>
         </>

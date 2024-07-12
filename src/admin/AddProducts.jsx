@@ -47,7 +47,7 @@ const AddProducts = () => {
                 throw new Error('No authentication token found');
             }
 
-            const response = await axios.post('https://ecommerce-ryoy.onrender.com/addproduct', formData, {
+            const response = await axios.post('https://ecommerce-vyte.onrender.com/addproduct', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
@@ -87,131 +87,7 @@ const AddProducts = () => {
         setProduct([...product, null]);
     };
     return (
-        // <section className="add-product-section">
-        //     <Container fluid>
-        //         <Row className="justify-content-center">
-        //             <Col lg="10" md="10" sm="12">
-        //                 <h4 className='mb-4 text-center'>Add Product</h4>
-        //                 {/* <Form onSubmit={addProduct}>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Product Image</span>
-        //                         <input 
-        //                             type="file" 
-        //                             className='form-control' 
-        //                             onChange={e => setProduct(e.target.files[0])} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <Button type="submit" className='btn-buy-now'>Add Product</Button>
-        //                 </Form> */}
-        //                      <Form onSubmit={addProduct}>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Product Image</span>
-        //                         <input 
-        //                             type="file" 
-        //                             className='form-control' 
-        //                             onChange={e => setProduct(e.target.files[0])} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-
-        //                     <FormGroup className='form-group'>
-        //                         <span>Product Image</span>
-        //                         <input 
-        //                             type="file" 
-        //                             className='form-control' 
-        //                             onChange={e => {
-        //                                 console.log(e , "ee")
-        //                                 const newImageSet =  [...product]
-        //                                 console.log(newImageSet , "inner 2 image")
-        //                                 setProduct([...newImageSet ,e.target.files[0]])
-        //                                }} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-
-        //                     <FormGroup className='form-group'>
-        //                         <span>Product Image</span>
-        //                         <input 
-        //                             type="file" 
-        //                             className='form-control' 
-        //                             onChange={e => {
-        //                                 const newImageSet =  [...product]
-        //                                 console.log(newImageSet , "inner 3 image")
-        //                                 setProduct([...newImageSet ,e.target.files[0]])
-        //                                 // setProduct(e.target.files)
-        //                             }} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Description</span>
-        //                         <input 
-        //                             type="text" 
-        //                             className='form-control' 
-        //                             value={description}
-        //                             onChange={e => setDescription(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Rating</span>
-        //                         <input 
-        //                             type="number" 
-        //                             className='form-control' 
-        //                             value={rating}
-        //                             onChange={e => setRating(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>CRating</span>
-        //                         <input 
-        //                             type="number" 
-        //                             className='form-control' 
-        //                             value={crating}
-        //                             onChange={e => setCRating(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>People</span>
-        //                         <input 
-        //                             type="number" 
-        //                             className='form-control' 
-        //                             value={people}
-        //                             onChange={e => setPeople(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Price</span>
-        //                         <input 
-        //                             type="number" 
-        //                             className='form-control' 
-        //                             value={price}
-        //                             onChange={e => setPrice(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     <FormGroup className='form-group'>
-        //                         <span>Discount</span>
-        //                         <input 
-        //                             type="number" 
-        //                             className='form-control' 
-        //                             value={discount}
-        //                             onChange={e => setDiscount(e.target.value)} 
-        //                             required 
-        //                         />
-        //                     </FormGroup>
-        //                     {error && <p className="text-danger">{error}</p>}
-        //                     <Button type="submit" className='btn-buy-now'>Add Product</Button>
-        //                 </Form>
-        //             </Col>
-        //         </Row>
-        //     </Container>
-        // </section>
-
+      
         <>
         <NavbarForm/>
         <section className="add-product-section">

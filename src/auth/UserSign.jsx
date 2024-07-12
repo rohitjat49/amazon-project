@@ -13,7 +13,7 @@ const UserSign = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://ecommerce-ryoy.onrender.com/signup', {
+            const response = await fetch('https://ecommerce-vyte.onrender.com/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

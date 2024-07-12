@@ -34,7 +34,6 @@ function App() {
     <>
     <Routes>
         <Route path="/" element={<HomePageComponent/>}/>
-        {/* <Route path="/product/:_id" element={<CardDetailComponent />} /> */}
         <Route path="/card-details" element={<CardDetailComponent />}/>
         <Route path="card-form" element={<DetailsFormComponent/>}/>
         <Route path="admin" element={<Login/>} /> 
@@ -59,15 +58,11 @@ function App() {
        
        
 
-       
-       {/* <Route path="/" element={<RatingComponent/>}/> */}
-
-       {/* <Route path="/" element={<FormDetails/>} /> */}
-
-     
         
        
     </Routes>
+
+    {/* <UserSign/> */}
     
       
       

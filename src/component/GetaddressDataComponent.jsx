@@ -18,7 +18,7 @@ const GetaddressDataComponent = () => {
     }, []);
 
     const fetchAddress = (token) => {
-        axios.get("https://ecommerce-ryoy.onrender.com/getaddress",{
+        axios.get("https://ecommerce-vyte.onrender.com/getaddress",{
         
         
             headers: {

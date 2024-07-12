@@ -455,7 +455,7 @@ const AdminUser = () => {
     }, []);
 
     const fetchUserDetails = (token) => {
-        axios.get("https://ecommerce-ryoy.onrender.com/getuser", {
+        axios.get("https://ecommerce-vyte.onrender.com/getuser", {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -485,7 +485,7 @@ const AdminUser = () => {
                 throw new Error('Authentication token not found');
             }
     
-            const response = await axios.delete(`https://ecommerce-ryoy.onrender.com/deleteuser/${userId}`, {
+            const response = await axios.delete(`https://ecommerce-vyte.onrender.com/deleteuser/${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -528,7 +528,7 @@ const AdminUser = () => {
                 throw new Error('Authentication token not found');
             }
 
-            const response = await axios.put(`https://ecommerce-ryoy.onrender.com/forgetpassword/${userIdForReset}`, {
+            const response = await axios.put(`https://ecommerce-vyte.onrender.com/forgetpassword/${userIdForReset}`, {
                 newPassword,
                 confirmPassword
             }, {

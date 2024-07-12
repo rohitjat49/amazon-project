@@ -23,7 +23,7 @@ const CardDetailComponent = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`https://ecommerce-ryoy.onrender.com/getoneproduct/${id}`, {
+        const response = await axios.get(`https://ecommerce-vyte.onrender.com/getoneproduct/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',

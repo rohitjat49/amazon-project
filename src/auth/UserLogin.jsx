@@ -18,7 +18,7 @@ const UserLogin = () => {
     }
 
     try {
-      const response = await fetch("https://ecommerce-ryoy.onrender.com/login", {
+      const response = await fetch("https://ecommerce-vyte.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
